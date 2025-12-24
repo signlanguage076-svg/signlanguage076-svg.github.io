@@ -35,6 +35,10 @@ function setup() {
   cam.size(windowWidth, windowHeight);
   cam.hide();
   cam.elt.setAttribute("playsinline", "");
+
+  flippedVideo = ml5.flipImage(video);
+    // Start classifying
+    classifyVideo();
 }
 
 function draw() {
