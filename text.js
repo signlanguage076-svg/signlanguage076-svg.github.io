@@ -19,17 +19,6 @@
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   }
 
-function setup() {
-    createCapture({
-   audio: false,
-   video: {
-     facingMode: {
-       exact: "environment"
-     }
-    }
-  });
- }
-
 let video;
 
 function setup() {
