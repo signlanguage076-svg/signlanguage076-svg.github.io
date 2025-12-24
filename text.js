@@ -28,12 +28,12 @@
        exact: "environment"
      }
    }
-  });
+  })
 
-    createCanvas(320, 260);
+    createCanvas(windowWidth, windowHeight);
     // Create the video
     video = createCapture(VIDEO);
-    video.size(320, 240);
+    video.size(windowWidth, windowHeight);
     video.hide();
 
     flippedVideo = ml5.flipImage(video);
