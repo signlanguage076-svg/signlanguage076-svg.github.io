@@ -31,6 +31,18 @@
     classifyVideo();
   }
 
+function setup() {
+    createCapture({
+    audio: false,
+    video = createCapture(VIDEO);
+    video.size(320, 240);
+    video.hide();
+
+    flippedVideo = ml5.flipImage(video);
+    // Start classifying
+    classifyVideo();
+  }
+
   function draw() {
     background(0);
     // Draw the video
