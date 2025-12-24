@@ -26,6 +26,7 @@ function setup() {
       facingMode: {
         exact: "user"
       }
+    }
     });
 }
 
