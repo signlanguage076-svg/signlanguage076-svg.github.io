@@ -10,17 +10,6 @@
   
   // Video
   let video;
-  let flippedVideo;
-  // To store the classification
-  let label = "";
-
-  // Load the model first
-  function preload() {
-    classifier = ml5.imageClassifier(imageModelURL + 'model.json');
-  }
-
-let video;
-
 function setup() {
   createCanvas(400, 400);
 
@@ -38,6 +27,16 @@ function setup() {
   video.size(400, 400);
   video.hide();
 }
+
+  let flippedVideo;
+  // To store the classification
+  let label = "";
+
+  // Load the model first
+  function preload() {
+    classifier = ml5.imageClassifier(imageModelURL + 'model.json');
+  }
+
 
 function draw() {
   image(video, 0, 0);
