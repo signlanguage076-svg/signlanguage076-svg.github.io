@@ -19,28 +19,31 @@
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   }
 
-let video;
+function setup() {
+    createCapture({
+   audio: false,
+   video: {
+     facingMode: {
+       exact: "environment"
+     }
+    }
+  });
+ }
 
 function setup() {
-  createCanvas(400, 400);
+    createCanvas(320, 260);
+    // Create the video
+    video = createCapture(VIDEO);
+    video.size(320, 240);
+    video.hide();
 
-  const constraints = {
-    audio: false,
-    video: {
-      facingMode: { exact: "environment" }
-    }
-  };
-
-  video = createCapture(constraints, function(stream) {
-    console.log("Camera started");
-  });
-
-  video.size(400, 400);
-  video.hide();
-}
+    flippedVideo = ml5.flipImage(video);
+    // Start classifying
+    classifyVideo();
+  }
 
 function draw() {
-  image(video, 0, 0);
+  image(cam, 0, 0, width, height);
 }
 
   function draw() {
