@@ -20,7 +20,7 @@
   }
 
   function setup() {
-    createCanvas(320, 260);
+    createCanvas(windowWidth, windowHeight);
     // Create the video
     video = createCapture(VIDEO);
     video.size(320, 240);
@@ -35,7 +35,7 @@ function setup() {
     createCapture({
     audio: false,
     video: {
-      facingMode: "user"
+      facingMode: "environment"
     }
     });
   }
