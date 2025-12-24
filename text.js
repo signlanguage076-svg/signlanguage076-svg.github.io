@@ -30,21 +30,28 @@ function setup() {
   });
  }
 
+let video;
+
 function setup() {
-    createCanvas(320, 260);
-    // Create the video
-    video = createCapture(VIDEO);
-    video.size(320, 240);
-    video.hide();
+  createCanvas(400, 400);
 
-    flippedVideo = ml5.flipImage(video);
-    // Start classifying
-    classifyVideo();
-  }
+  const constraints = {
+    audio: false,
+    video: {
+      facingMode: { exact: "environment" }
+    }
+  };
 
+  video = createCapture(constraints, function(stream) {
+    console.log("Camera started");
+  });
+
+  video.size(400, 400);
+  video.hide();
+}
 
 function draw() {
-  image(cam, 0, 0, width, height);
+  image(video, 0, 0);
 }
 
   function draw() {
