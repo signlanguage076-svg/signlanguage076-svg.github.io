@@ -23,7 +23,7 @@
     createCanvas(windowWidth, windowHeight);
     // Create the video
     video = createCapture(VIDEO);
-    video.size(320, 240);
+    video.size(640, 480);
     video.hide();
 
     flippedVideo = ml5.flipImage(video);
