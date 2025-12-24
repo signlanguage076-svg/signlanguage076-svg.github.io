@@ -28,7 +28,7 @@
        exact: "environment"
      }
    }
-  };
+  }
 
     createCanvas(320, 260);
     // Create the video
