@@ -20,25 +20,26 @@
   }
 
 let cam;
-　function setup() {
-  　const constraints = {
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+
+  const constraints = {
     video: {
       facingMode: { ideal: "environment" }
     },
     audio: false
   };
 
-  cam　= createCapture(constraints);
+  cam = createCapture(constraints);
+  cam.size(windowWidth, windowHeight);
   cam.hide();
-
-  // iOSで重要
   cam.elt.setAttribute("playsinline", "");
-   
-    createCanvas(windowWidth, windowHeight);
-    
-    // Start classifying
-    classifyVideo();
-  }
+}
+
+function draw() {
+  image(cam, 0, 0, width, height);
+}
 
   function draw() {
     background(0);
