@@ -20,14 +20,15 @@
   }
 
 function setup() {
-  createCapture({
-    audio: false,
+  const constraints = {
     video: {
-      facingMode: {
-        exact: "environment"
-      }
-    }
-    });
+      facingMode: { ideal: "environment" }
+    },
+    audio: false
+  };
+
+  const capture = createCapture(constraints);
+  capture.hide();
 }
 
   function setup() {
