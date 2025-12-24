@@ -28,7 +28,8 @@ function setup() {
   };
 
   const capture = createCapture(constraints);
-  capture.hide();
+　capture.elt.setAttribute("playsinline", "");
+　capture.hide();
 }
 
   function setup() {
