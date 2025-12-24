@@ -28,15 +28,15 @@ function setup() {
   };
 
   const capture = createCapture(constraints);
-　capture.elt.setAttribute("playsinline", "");
-　capture.hide();
+　 capture.elt.setAttribute("playsinline", "");
+　 capture.hide();
 }
 
   function setup() {
-    createCanvas(640, 480);
+    createCanvas(320, 260);
     // Create the video
     video = createCapture(VIDEO);
-    video.size(640, 480);
+    video.size(320, 240);
     video.hide();
 
     flippedVideo = ml5.flipImage(video);
