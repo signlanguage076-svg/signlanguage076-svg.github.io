@@ -21,7 +21,6 @@
 
 
   function setup() {
-    createCanvas(320, 260);
     createCapture({
    audio: false,
    video: {
@@ -30,7 +29,8 @@
      }
    }
   };
-    
+
+    createCanvas(320, 260);
     // Create the video
     video = createCapture(VIDEO);
     video.size(320, 240);
