@@ -10,28 +10,6 @@
   
   // Video
   let video;
-function setup() {
-  createCanvas(400, 400);
-
-  const constraints = {
-    audio: false,
-    video: {
-      facingMode: { exact: "environment" }
-    }
-  };
-
-  video = createCapture(constraints, function(stream) {
-    console.log("Camera started");
-  });
-
-  video.size(400, 400);
-  video.hide();
-}
-
-function draw() {
-  image(video, 0, 0);
-}
-
   let flippedVideo;
   // To store the classification
   let label = "";
@@ -39,6 +17,18 @@ function draw() {
   // Load the model first
   function preload() {
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
+  }
+
+  function setup() {
+    createCanvas(320, 260);
+    // Create the video
+    video = createCapture(VIDEO);
+    video.size(320, 240);
+    video.hide();
+
+    flippedVideo = ml5.flipImage(video);
+    // Start classifying
+    classifyVideo();
   }
 
   function draw() {
