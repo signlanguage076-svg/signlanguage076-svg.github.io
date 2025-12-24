@@ -28,21 +28,14 @@ let cam;
     audio: false
   };
 
-  cam = createCapture(constraints);
+  cam　= createCapture(constraints);
   cam.hide();
 
   // iOSで重要
   cam.elt.setAttribute("playsinline", "");
-}
-
-    function setup() {
+   
     createCanvas(windowWidth, windowHeight);
-    // Create the video
-    video = createCapture(VIDEO);
-    video.size(windowWidth, windowHeight);
-    video.hide();
-
-    flippedVideo = ml5.flipImage(video);
+    
     // Start classifying
     classifyVideo();
   }
