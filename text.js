@@ -25,21 +25,16 @@
     video = createCapture(VIDEO);
     video.size(640, 480);
     video.hide();
-
-    flippedVideo = ml5.flipImage(video);
-    // Start classifying
-    classifyVideo();
-  }
-
-function setup() {
-    createCapture({
-    audio: false,
+    audio: false;
     video: {
       facingMode: {
         exact: "environment"
       }
-    }
-    });
+    };
+
+    flippedVideo = ml5.flipImage(video);
+    // Start classifying
+    classifyVideo();
   }
 
   function draw() {
