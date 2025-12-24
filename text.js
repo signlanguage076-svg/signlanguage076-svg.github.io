@@ -19,21 +19,18 @@
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   }
 
-function setup() {
-  const constraints = {
-    video: {
-      facingMode: { ideal: "environment" }
-    },
-    audio: false
-  };
-
-  const capture = createCapture(constraints);
-　 capture.elt.setAttribute("playsinline", "");
-　 capture.hide();
-}
 
   function setup() {
     createCanvas(320, 260);
+    createCapture({
+   audio: false,
+   video: {
+     facingMode: {
+       exact: "environment"
+     }
+   }
+  };
+    
     // Create the video
     video = createCapture(VIDEO);
     video.size(320, 240);
