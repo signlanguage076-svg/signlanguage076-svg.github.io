@@ -35,7 +35,9 @@ function setup() {
     createCapture({
     audio: false,
     video: {
-      facingMode: "environment"
+      facingMode: {
+        exact: "user"
+      }
     }
     });
   }
