@@ -19,18 +19,22 @@
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   }
 
+function setup() {
+  createCapture({
+    audio: false,
+    video: {
+      facingMode: {
+        exact: "user"
+      }
+    });
+}
+
   function setup() {
     createCanvas(windowWidth, windowHeight);
     // Create the video
     video = createCapture(VIDEO);
     video.size(640, 480);
     video.hide();
-    audio: false;
-    video: {
-      facingMode: {
-        exact: "user"
-      }
-    };
 
     flippedVideo = ml5.flipImage(video);
     // Start classifying
