@@ -20,24 +20,22 @@
   }
 
   function setup() {
-    createCanvas(windowWidth, windowHeight);
-    // Create the video
+  createCanvas(windowWidth, windowHeight);
 
-    video = createCapture({
-      video: {
-        facingMode: "environment"
-      },
-      audio: false
-    });
-          
-    capture.size(640, 480);
-    // capture要素はデフォルトでDOMに追加されるので、非表示にする
-    capture.hide();
+  video = createCapture({
+    video: {
+      facingMode: { exact: "environment" }
+    },
+    audio: false
+  });
 
-    flippedVideo = ml5.flipImage(video);
-    // Start classifying
-    classifyVideo();
-  }
+  video.size(640, 480);
+  video.hide();
+
+  flippedVideo = ml5.flipImage(video);
+
+  classifyVideo();
+}
 
   function draw() {
     background(0);
