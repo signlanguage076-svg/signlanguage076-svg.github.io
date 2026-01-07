@@ -88,10 +88,9 @@ function gotResult(error, results) {
 function drawTextBelowVideo(txt) {
   push();
   textAlign(CENTER, CENTER);
-  textSize(50);
-  fill(255);
-  text(txt, width / 2, height - 100); // 画面下から100px上
+  textSize(100);
+  fill(255,0,0);
+  ;text(txt, width / 2, height - 100); // 画面下から100px上
   pop();
 }
-
 </script>
