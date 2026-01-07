@@ -27,6 +27,18 @@
   button.mousePressed(startCamera);
 }
 
+function startCamera() {
+  video = createCapture({
+    video: true,
+    audio: false
+  });
+
+  video.size(640, 480);
+  video.hide();
+
+  classifyVideo();
+}
+
   function draw() {
     background(0);
     // Draw the video
