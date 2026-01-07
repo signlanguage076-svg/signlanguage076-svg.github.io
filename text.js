@@ -19,21 +19,6 @@
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   }
 
-function startCamera() {
-  video = createCapture({
-    video: {
-      facingMode: { exact: "environment" }
-    },
-    audio: false
-  });
-
-  video.size(640, 480);
-  video.hide();
-
-  flippedVideo = ml5.flipImage(video);
-  classifyVideo();
-}
-
   function setup() {
   createCanvas(windowWidth, windowHeight);
 
