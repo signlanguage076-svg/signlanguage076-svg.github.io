@@ -46,15 +46,12 @@
     background(0);
     // Draw the video
     image(flippedVideo, 0, 0);
-
-  if (video) {
-    image(video, 0, 0, width, height);
-  }
-
-  if (detectedLabel !== "") {
-    drawTextBelowVideo(detectedLabel);
-  }
-}
+ 
+    // Draw the label
+    fill(255);
+    textSize(16);
+    textAlign(CENTER);
+    text(label, width / 2, height - 4);
   }
  
   // Get a prediction for the current video frame
@@ -72,26 +69,10 @@
       console.error(error);
       return;
     }
-    
-    let best = results.reduce((a, b) => (a.confidence > b.confidence ? a : b));
-
-  if (best.confidence >= 0.8) {
-    detectedLabel = best.label;
-    detectedConfidence = best.confidence;
-  } else {
-    detectedLabel = "";
-  }
+    // The results are in an array ordered by confidence.
+    // console.log(results[0]);
+    label = results[0].label;
     // Classifiy again!
     classifyVideo();
   }
-
-function drawTextBelowVideo(txt) {
-  push();
-  textAlign(CENTER, CENTER);
-  textSize(50);
-  fill(255);
-  text(txt, width / 2, height - 50); // 画面下から50px上
-  pop();
-}
-
 </script>
