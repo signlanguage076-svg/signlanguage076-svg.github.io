@@ -81,4 +81,14 @@
     // Classifiy again!
     classifyVideo();
   }
+
+function drawTextBelowVideo(txt) {
+  push();
+  textAlign(CENTER, CENTER);
+  textSize(50);
+  fill(255);
+  text(txt, width / 2, height - 50); // 画面下から50px上
+  pop();
+}
+
 </script>
