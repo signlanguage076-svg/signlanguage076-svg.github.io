@@ -90,7 +90,7 @@ function drawTextBelowVideo(txt) {
   textAlign(CENTER, CENTER);
   textSize(50);
   fill(255);
-  text(txt, width / 2, height - 50); // 画面下から50px上
+  text(txt, width / 2, height - 100); // 画面下から100px上
   pop();
 }
 
