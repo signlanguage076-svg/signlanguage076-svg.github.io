@@ -34,9 +34,16 @@ function setup() {
 }
 
 function draw() {
-  image(video, 0, 0); // ← カメラ映像
+  background(0);
 
-  // ここに「文字を浮かび上がらせる」コードを書く
+  if (video) {
+    image(flippedVideo, 0, 0, width, height);
+  }
+
+  // 「手話してない」時は表示しない
+  if (label !== "none" && confidence > 0.7) {
+    drawFloatingText(label);
+  }
 }
 
 function classifyVideo() {
