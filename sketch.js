@@ -69,9 +69,15 @@
       console.error(error);
       return;
     }
-    // The results are in an array ordered by confidence.
-    // console.log(results[0]);
-    label = results[0].label;
+    
+    let best = results.reduce((a, b) => (a.confidence > b.confidence ? a : b));
+
+  if (best.confidence >= 0.8) {
+    detectedLabel = best.label;
+    detectedConfidence = best.confidence;
+  } else {
+    detectedLabel = "";
+  }
     // Classifiy again!
     classifyVideo();
   }
