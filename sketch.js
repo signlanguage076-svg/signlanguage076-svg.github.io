@@ -19,7 +19,7 @@
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   }
 
-let video; 
+let detectedConfidence = 0;
 
   function setup() {
     createCanvas(windowWidth, windowHeight);// キャンバスを作成
