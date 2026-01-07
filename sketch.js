@@ -27,7 +27,8 @@ let capture;
   const constraints = {
     video: {
        facingMode: { exact: "environment" }
-    }
+    },
+    audio: false
   };
 
   // createCaptureにオプションを渡す
