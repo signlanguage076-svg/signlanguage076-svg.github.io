@@ -20,11 +20,19 @@
   }
 
   function setup() {
-    createCanvas(320, 260);
+    createCanvas(windowWidth, windowHeight);
     // Create the video
-    video = createCapture(VIDEO);
-    video.size(320, 240);
-    video.hide();
+    // カメラオプションを設定
+  const constraints = {
+    video: {
+      facingMode: "environment"
+    }
+  };
+
+    video = createCapture(constraints);
+    capture.size(640, 480);
+    // capture要素はデフォルトでDOMに追加されるので、非表示にする
+    capture.hide();
 
     flippedVideo = ml5.flipImage(video);
     // Start classifying
