@@ -18,13 +18,29 @@
   function preload() {
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   }
+async function startCamera() {
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  const videoDevices = devices.filter(d => d.kind === "videoinput");
 
-  function startCamera() {
-  video = createCapture({
-    video: true,
+  // 背面カメラっぽいものを探す
+  let backCamera = videoDevices.find(d =>
+    d.label.toLowerCase().includes("back") ||
+    d.label.toLowerCase().includes("rear")
+  );
+
+  // 見つからなければ最後のカメラ
+  if (!backCamera) {
+    backCamera = videoDevices[videoDevices.length - 1];
+  }
+
+  const stream = await navigator.mediaDevices.getUserMedia({
+    video: {
+      deviceId: { exact: backCamera.deviceId }
+    },
     audio: false
   });
 
+  video = createCapture(stream);
   video.size(640, 480);
   video.hide();
 
