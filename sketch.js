@@ -19,6 +19,8 @@
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   }
 
+let video; 
+
   function setup() {
     createCanvas(windowWidth, windowHeight);// キャンバスを作成
     
@@ -26,6 +28,8 @@
   button.position(20, 20);
   button.mousePressed(startCamera);
 }
+
+//カメラ起動
 
 function startCamera() {
   video = createCapture({
@@ -39,37 +43,55 @@ function startCamera() {
   classifyVideo();
 }
 
+// 分類開始
+
+function classifyVideo() {
+  classifier.classify(video, gotResult);
+}
+
+// 結果処理（confidence >= 0.8 のものを選択）
+
+function gotResult(error, results) {
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  let best = results.reduce((a, b) => (a.confidence > b.confidence ? a : b));
+
+  if (best.confidence >= 0.8) {
+    detectedLabel = best.label;
+    detectedConfidence = best.confidence;
+  } else {
+    detectedLabel = "";
+  }
+
+  classifyVideo();
+}
+
+//描画
+
   function draw() {
-    background(0);
-    // Draw the video
-    image(flippedVideo, 0, 0);
+  background(0);
 
-    // Draw the label
-    fill(255);
-    textSize(16);
-    textAlign(CENTER);
-    text(label, width / 2, height - 4);
+  if (video) {
+    image(video, 0, 0, width, height);
   }
 
-  // Get a prediction for the current video frame
-  function classifyVideo() {
-    flippedVideo = ml5.flipImage(video)
-    classifier.classify(flippedVideo, gotResult);
-    flippedVideo.remove();
-
+  if (detectedLabel !== "") {
+    drawTextBelowVideo(detectedLabel);
   }
+}
 
-  // When we get a result
-  function gotResult(error, results) {
-    // If there is an error
-    if (error) {
-      console.error(error);
-      return;
-    }
-    // The results are in an array ordered by confidence.
-    // console.log(results[0]);
-    label = results[0].label;
-    // Classifiy again!
-    classifyVideo();
-  }
+// 映像の下に文字を表示
+
+function drawTextBelowVideo(txt) {
+  push();
+  textAlign(CENTER, CENTER);
+  textSize(50);
+  fill(255);
+  text(txt, width / 2, height - 50); // 画面下から50px上
+  pop();
+}
+
 </script>
