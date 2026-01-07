@@ -22,14 +22,14 @@
   function setup() {
     createCanvas(windowWidth, windowHeight);
     // Create the video
-    // カメラオプションを設定
-  const constraints = {
-    video: {
-      facingMode: "environment"
-    }
-  };
 
-    video = createCapture(constraints);
+    video = createCapture({
+      video: {
+        facingMode: "environment"
+      },
+      audio: false
+    });
+          
     capture.size(640, 480);
     // capture要素はデフォルトでDOMに追加されるので、非表示にする
     capture.hide();
