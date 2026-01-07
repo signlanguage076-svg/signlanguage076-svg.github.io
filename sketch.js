@@ -19,23 +19,12 @@
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   }
 
-let capture;
-
   function setup() {
     createCanvas(windowWidth, windowHeight);// キャンバスを作成
-   // カメラオプションを設定
-  const constraints = {
-    video: {
-       facingMode: { exact: "environment" }
-    },
-    audio: false
-  };
-
-  // createCaptureにオプションを渡す
-  capture = createCapture(constraints);
-  capture.size(640, 480);
-  // capture要素はデフォルトでDOMに追加されるので、非表示にする
-  capture.hide();
+    
+   let button = createButton("カメラ起動");
+  button.position(20, 20);
+  button.mousePressed(startCamera);
 }
 
   function draw() {
