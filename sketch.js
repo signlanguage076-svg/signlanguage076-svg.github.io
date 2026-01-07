@@ -20,28 +20,62 @@
   }
  
   function setup() {
-    createCanvas(320, 260);
-    // Create the video
-    video = createCapture(VIDEO);
-    video.size(320, 240);
-    video.hide();
- 
-    flippedVideo = ml5.flipImage(video);
-    // Start classifying
-    classifyVideo();
+      createCanvas(windowWidth, windowHeight);
+
+  let button = createButton("カメラ起動");
+  button.position(20, 20);
+  button.mousePressed(startCamera);
   }
+
+function startCamera() {
+  video = createCapture({
+    video: true,
+    audio: false
+  });
+
+  video.size(640, 480);
+  video.hide();
+
+  classifyVideo();
+}
+
+function classifyVideo() {
+  flippedVideo = ml5.flipImage(video);
+  classifier.classify(flippedVideo, gotResult);
+}
+
+function gotResult(error, results) {
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  // 一番 confidence が高い手話を選ぶ
+  let best = results.reduce((a, b) =>
+    a.confidence > b.confidence ? a : b
+  );
+
+  if (best.confidence >= 0.8) {
+    detectedLabel = best.label;
+    detectedConfidence = best.confidence;
+  } else {
+    detectedLabel = "";
+  }
+
+  classifyVideo();
+}
  
   function draw() {
-    background(0);
-    // Draw the video
-    image(flippedVideo, 0, 0);
- 
-    // Draw the label
-    fill(255);
-    textSize(16);
-    textAlign(CENTER);
-    text(label, width / 2, height - 4);
-  }
+  background(0);
+
+  if (video) {
+    image(flippedVideo, 0, 0, width, height);
+  }
+
+  if (detectedLabel !== "") {
+    drawFloatingText(detectedLabel);
+  }
+}
  
   // Get a prediction for the current video frame
   function classifyVideo() {
@@ -64,4 +98,22 @@
     // Classifiy again!
     classifyVideo();
   }
+
+function drawFloatingText(txt) {
+  push();
+
+  textAlign(CENTER, CENTER);
+  textSize(width / 5);
+  textStyle(BOLD);
+
+  // 影
+  fill(0, 160);
+  text(txt, width / 2 + 6, height / 2 + 6);
+
+  // 本体
+  fill(255);
+  text(txt, width / 2, height / 2);
+
+  pop();
+}
 </script>
