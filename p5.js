@@ -12,35 +12,43 @@
   let video;
   let flippedVideo;
   // To store the classification
-  let label = "";
+  let label = "読み込み中・・・";
 
   // Load the model first
   function preload() {
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   }
 
-　let capture;
-
 function setup() {
-  createCanvas(windowWidth, windowHeight); // キャンバスを作成
+  createCanvas(windowWidth, windowHeight);
 
-  // カメラオプションを設定
-  const constraints = {
+  video = createCapture({
     video: {
-      facingMode: "environment"
-    }
-  };
-
-  // createCaptureにオプションを渡す
-  capture = createCapture(constraints);
-  capture.size(640, 480);
-  // capture要素はデフォルトでDOMに追加されるので、非表示にする
-  capture.hide();
+      facingMode: { exact: "environment" }
+    },
+    audio: false
+  });
+  video.size(640, 480);
+  video.hide();
+  classifyVideo();
 }
 
 function draw() {
-  background(255);
-  // 映像をキャンバスに描画
-  image(capture, 0, 0, 320, 240);
+  image(video, 0, 0); // ← カメラ映像
+
+  // ここに「文字を浮かび上がらせる」コードを書く
+}
+
+function classifyVideo() {
+  classifier.classify(video, gotResult);
+}
+
+function gotResult(error, results) {
+  if (error) {
+    console.error(error);
+    return;
+  }
+  label = results[0].label; // ← 認識結果（あ / い / う / 何もしてない）
+  classifyVideo();
 }
 </script>
