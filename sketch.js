@@ -3,117 +3,65 @@
 <script src="https://cdn.jsdelivr.net/npm/p5@latest/lib/addons/p5.dom.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/ml5@latest/dist/ml5.min.js"></script>
 <script type="text/javascript">
-  // Classifier Variable
-  let classifier;
-  // Model URL
-  let imageModelURL = 'https://teachablemachine.withgoogle.com/models/9lyEEnrtg/';
-  
-  // Video
-  let video;
-  let flippedVideo;
-  // To store the classification
-  let label = "";
- 
-  // Load the model first
-  function preload() {
-    classifier = ml5.imageClassifier(imageModelURL + 'model.json');
-  }
- 
-  function setup() {
-      createCanvas(windowWidth, windowHeight);
+  // Classifier Variable
+  let classifier;
+  // Model URL
+  let imageModelURL = 'https://teachablemachine.withgoogle.com/models/9lyEEnrtg/';
+  
+  // Video
+  let video;
+  let flippedVideo;
+  // To store the classification
+  let label = "";
 
-  let button = createButton("カメラ起動");
-  button.position(20, 20);
-  button.mousePressed(startCamera);
-  }
-
-function startCamera() {
-  video = createCapture({
-    video: true,
-    audio: false
-  });
-
-  video.size(640, 480);
-  video.hide();
-
-  classifyVideo();
-}
-
-function classifyVideo() {
-  flippedVideo = ml5.flipImage(video);
-  classifier.classify(flippedVideo, gotResult);
-}
-
-function gotResult(error, results) {
-  if (error) {
-    console.error(error);
-    return;
+  // Load the model first
+  function preload() {
+    classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   }
 
-  // 一番 confidence が高い手話を選ぶ
-  let best = results.reduce((a, b) =>
-    a.confidence > b.confidence ? a : b
-  );
+  function setup() {
+    createCanvas(320, 260);
+    // Create the video
+    video = createCapture(VIDEO);
+    video.size(320, 240);
+    video.hide();
 
-  if (best.confidence >= 0.8) {
-    detectedLabel = best.label;
-    detectedConfidence = best.confidence;
-  } else {
-    detectedLabel = "";
+    flippedVideo = ml5.flipImage(video);
+    // Start classifying
+    classifyVideo();
   }
 
-  classifyVideo();
-}
- 
-  function draw() {
-  background(0);
+  function draw() {
+    background(0);
+    // Draw the video
+    image(flippedVideo, 0, 0);
 
-  if (video) {
-    image(flippedVideo, 0, 0, width, height);
+    // Draw the label
+    fill(255);
+    textSize(16);
+    textAlign(CENTER);
+    text(label, width / 2, height - 4);
   }
 
-  if (detectedLabel !== "") {
-    drawFloatingText(detectedLabel);
+  // Get a prediction for the current video frame
+  function classifyVideo() {
+    flippedVideo = ml5.flipImage(video)
+    classifier.classify(flippedVideo, gotResult);
+    flippedVideo.remove();
+
   }
-}
- 
-  // Get a prediction for the current video frame
-  function classifyVideo() {
-    flippedVideo = ml5.flipImage(video)
-    classifier.classify(flippedVideo, gotResult);
-    flippedVideo.remove();
- 
-  }
- 
-  // When we get a result
-  function gotResult(error, results) {
-    // If there is an error
-    if (error) {
-      console.error(error);
-      return;
-    }
-    // The results are in an array ordered by confidence.
-    // console.log(results[0]);
-    label = results[0].label;
-    // Classifiy again!
-    classifyVideo();
-  }
 
-function drawFloatingText(txt) {
-  push();
-
-  textAlign(CENTER, CENTER);
-  textSize(width / 5);
-  textStyle(BOLD);
-
-  // 影
-  fill(0, 160);
-  text(txt, width / 2 + 6, height / 2 + 6);
-
-  // 本体
-  fill(255);
-  text(txt, width / 2, height / 2);
-
-  pop();
-}
+  // When we get a result
+  function gotResult(error, results) {
+    // If there is an error
+    if (error) {
+      console.error(error);
+      return;
+    }
+    // The results are in an array ordered by confidence.
+    // console.log(results[0]);
+    label = results[0].label;
+    // Classifiy again!
+    classifyVideo();
+  }
 </script>
