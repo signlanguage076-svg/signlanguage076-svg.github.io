@@ -39,13 +39,22 @@
         await webcam.setup(); // request access to the webcam
         await webcam.play();
         window.requestAnimationFrame(loop);
-      document.getElementById("webcam-container").appendChild(webcam.canvas);
-
+    
         // append elements to the DOM
         document.getElementById("webcam-container").appendChild(webcam.canvas);
         labelContainer = document.getElementById("label-container");
         for (let i = 0; i < maxPredictions; i++) { // and class labels
             labelContainer.appendChild(document.createElement("div"));
+          <div id="webcam-container"></div>
+<div id="label-container" style="
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    color: white;
+    font-weight: bold;
+"></div>
         }
     }
 
