@@ -2,13 +2,33 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
   <title>Sign Language Art</title>
 
   <div>手話リアルタイム認識</div>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+
+  <style>
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    background: black;
+  }
+
+  #webcam-container {
+    width: 100vw;        /* 画面横いっぱい */
+    height: 50vh;        /* 画面高さの半分 */
+    overflow: hidden;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* はみ出し防止・トリミング */
+  }
+</style>
 </head>
 
 <body>
