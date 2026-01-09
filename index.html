@@ -12,21 +12,20 @@
 
 <body>
   <button onclick="startCamera()">カメラ起動</button>
+<div id="webcam-container"></div>
 
-  <div id="webcam-container"></div>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 
-  <div id="label-container"
-       style="position: fixed;
-              bottom: 20px;
-              width: 100%;
-              text-align: center;
-              font-size: 32px;
-              font-weight: bold;
-              color: white;">
-  </div>
+<script>
+async function startCamera() {
+  const webcam = new tmImage.Webcam(640, 480, true);
+  await webcam.setup();
+  await webcam.play();
+  document.getElementById("webcam-container").appendChild(webcam.canvas);
+}
+</script>
 
-  <!-- ここにJavaScriptを書く -->
-  <script>
+<script>
 const URL = "https://teachablemachine.withgoogle.com/models/9lyEEnrtg/";
 
 let model, webcam, labelContainer, maxPredictions;
