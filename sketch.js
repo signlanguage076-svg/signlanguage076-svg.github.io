@@ -8,19 +8,16 @@ async function startCamera() {
   const metadataURL = URL + "metadata.json";
 
   model = await tmImage.load(modelURL, metadataURL);
-  maxPredictions = model.getTotalClasses();
 
-  const flip = true;
+  const camWidth  = window.innerWidth;
+  const camHeight = window.innerHeight / 2;
 
-  webcam = new tmImage.Webcam(640, 480, flip, {
-    facingMode: "environment"
-  });
-
-  await webcam.setup();
+  webcam = new tmImage.Webcam(camWidth, camHeight, true);
+  await webcam.setup();     // SafariのUIで背面カメラ選択
   await webcam.play();
-  window.requestAnimationFrame(loop);
 
   document.getElementById("webcam-container").appendChild(webcam.canvas);
+  window.requestAnimationFrame(loop);
   labelContainer = document.getElementById("label-container");
 }
 
