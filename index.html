@@ -18,10 +18,10 @@
 
   <div id="label-container"
        style="position: fixed;
-              bottom: 100px;
+              bottom: 75px;
               width: 100%;
               text-align: center;
-              font-size: 120px;
+              font-size: 64px;
               font-weight: bold;
               color: black;"></div>
 
@@ -68,7 +68,6 @@ async function predict() {
     labelContainer.innerHTML = best.className;
   } else {
     labelContainer.innerHTML = "";
-    labelContainer.style.fontSize = "120px";
   }
 }
 </script>
