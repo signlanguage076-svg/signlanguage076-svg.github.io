@@ -40,7 +40,7 @@ async function startCamera() {
 
   const flip = true;
 
-  webcam = new tmImage.Webcam(480, 640, flip);
+  webcam = new tmImage.Webcam(640, 480, flip);
 
   await webcam.setup();
   await webcam.play();
