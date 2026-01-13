@@ -12,7 +12,9 @@ async function startCamera() {
 
   const flip = true;
 
-  webcam = new tmImage.Webcam(480, 640, flip);
+  webcam = new tmImage.Webcam(480, 640, flip, {
+    facingMode: "environment"
+  });
 
   await webcam.setup();
   await webcam.play();
