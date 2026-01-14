@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
-  <title>Sign Language Art</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
 
-   <div>手話リアルタイム認識</div>
+  <title>Sign Language Art</title>
+
+  <div>手話リアルタイム認識</div>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 
 <body>
-  <button id="start-button">カメラ起動</button>
-
+  <button onclick="startCamera()">カメラ起動</button>
 
   <div id="webcam-container"></div>
 
@@ -24,10 +23,11 @@
               bottom: 30px;
               width: 100%;
               text-align: center;
-              font-size: 100px;
+              font-size: 72px;
               font-weight: bold;
               color: black;
-              font-family: 'Kosugi Maru', sans-serif;"></div>
+              font-family: 'Kosugi Maru', sans-serif;">
+ </div>
   
  <script src="sketch.js"></script>
   
