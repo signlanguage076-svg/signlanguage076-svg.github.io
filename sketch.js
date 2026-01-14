@@ -1,5 +1,3 @@
-<script>
-  
 const URL = "https://teachablemachine.withgoogle.com/models/9lyEEnrtg/”;
 
 let model, webcam, labelContainer, maxPredictions;
@@ -46,4 +44,3 @@ async function predict() {
     labelContainer.innerHTML = "";
   }
 }
-</script>
