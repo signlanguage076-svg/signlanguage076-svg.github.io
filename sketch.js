@@ -23,6 +23,10 @@ async function startCamera() {
   labelContainer = document.getElementById("label-container");
 }
 
+　function draw() {
+  image(webcam.canvas, 0, 0, width, height);
+}
+
 async function loop() {
   webcam.update();
   await predict();
