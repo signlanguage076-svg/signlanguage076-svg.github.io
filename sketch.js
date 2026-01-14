@@ -1,4 +1,4 @@
-const URL = "https://teachablemachine.withgoogle.com/models/9lyEEnrtg/ ”;
+const URL = "https://teachablemachine.withgoogle.com/models/9lyEEnrtg/”;
 
 let model, webcam, labelContainer, maxPredictions;
 
@@ -11,7 +11,7 @@ async function startCamera() {
 
   const flip = true;
 
-  webcam = new tmImage.Webcam(480, 640, flip);
+  webcam = new tmImage.Webcam(640, 480, flip);
 
   await webcam.setup({
   facingMode: { exact: "environment" }
