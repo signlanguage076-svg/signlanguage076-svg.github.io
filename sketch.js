@@ -34,7 +34,7 @@ async function predict() {
     a.probability > b.probability ? a : b
   );
 
-  if (best.probability >= 0.8) {
+  if (best.probability >= 0.9) {
     labelContainer.innerHTML = best.className;
   } else {
     labelContainer.innerHTML = "";
