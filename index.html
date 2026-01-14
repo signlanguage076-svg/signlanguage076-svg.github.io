@@ -3,31 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <title>Sign Language Art</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
 
-  <title>Sign Language Art</title>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
 
-  <div>手話リアルタイム認識</div>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: white;
+      font-family: 'Kosugi Maru', sans-serif;
+    }
+
+    h1 {
+  position: fixed;
+  top: 50%;            /* 画面縦中央 */
+  left: 50%;           /* 画面横中央 */
+  transform: translate(-50%, -100%); /* 中央揃え＋少し上にずらす */
+  color: black;
+  font-size: 48px;     /* 大きく */
+  font-weight: bold;
+  z-index: 10;
+  margin: 0;
+  text-align: center;
+  }
+
+    button {
+  position: fixed;
+  top: 55%;             /* タイトルの少し下 */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  font-size: 28px;      /* 大きく */
+  padding: 12px 24px;   /* ボタンサイズも大きく */
+  border-radius: 12px;
+  cursor: pointer;
+  }
+
+    #label-container {
+      position: fixed;
+      bottom: 30px;
+      width: 100%;
+      text-align: center;
+      font-size: 72px;
+      font-weight: bold;
+      color: black;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+      pointer-events: none;
+      z-index: 10;
+    }
+  </style>
 </head>
 
 <body>
+  
+  <div>手話リアルタイム認識</div>
+  
   <button onclick="startCamera()">カメラ起動</button>
 
   <div id="webcam-container"></div>
-
-  <div id="label-container"
-       style="position: fixed;
-              bottom: 30px;
-              width: 100%;
-              text-align: center;
-              font-size: 72px;
-              font-weight: bold;
-              color: black;
-              font-family: 'Kosugi Maru', sans-serif;">
- </div>
   
  <script src="sketch.js"></script>
   
