@@ -9,13 +9,13 @@ async function startCamera() {
   model = await tmImage.load(modelURL, metadataURL);
   maxPredictions = model.getTotalClasses();
 
-  const flip = true;
-
-  webcam = new tmImage.Webcam(640, 480, flip);
+  const flip = false;
+  webcam = new tmImage.Webcam(480, 640, flip);
 
   await webcam.setup({
   facingMode: { exact: "environment" }
 });
+  
   await webcam.play();
   window.requestAnimationFrame(loop);
 
