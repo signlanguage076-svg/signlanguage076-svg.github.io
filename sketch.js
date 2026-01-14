@@ -10,7 +10,7 @@ async function startCamera() {
   maxPredictions = model.getTotalClasses();
 
   const flip = false;
-  webcam = new tmImage.Webcam(640, 480, flip);
+  webcam = new tmImage.Webcam(480, 640, flip);
 
   await webcam.setup({
   facingMode: { exact: "environment" }
