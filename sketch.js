@@ -12,9 +12,7 @@ async function startCamera() {
   const flip = false;
   webcam = new tmImage.Webcam(480, 640, flip);
 
-  await webcam.setup({
-  facingMode: { exact: "environment" }
-});
+  await webcam.setup({ facingMode: { exact: "environment" }});
   
   await webcam.play();
   window.requestAnimationFrame(loop);
@@ -40,5 +38,6 @@ async function predict() {
     labelContainer.innerHTML = best.className;
   } else {
     labelContainer.innerHTML = "";
-  }
+ }
 }
+
