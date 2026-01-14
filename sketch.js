@@ -30,13 +30,16 @@ async function loop() {
 async function predict() {
   const prediction = await model.predict(webcam.canvas);
 
-  let best = prediction.reduce((a, b) =>
-    a.probability > b.probability ? a : b
-  );
+let best = prediction[0];
+for (let i = 1; i < prediction.length; i++) {
+  if (prediction[i].probability > best.probability) {
+    best = prediction[i];
+  }
+};
 
-  if (best.probability >= 0.9) {
-    labelContainer.innerHTML = best.className;
-  } else {
+  if (best.probability >= 0.5) {
+  labelContainer.innerText = best.className;
+　} else {
     labelContainer.innerHTML = "";
  }
 }
