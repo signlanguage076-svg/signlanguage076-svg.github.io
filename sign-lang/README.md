@@ -6,7 +6,7 @@
 手話のポーズを外側のカメラに向かって行うと画像認識で各ポーズに対応する文字が表示される。
 画像の認識には、Teachable Machine を使用した。
 
-![sign-lang](./sign-lang/sign-lang-app.jpg)
+![sign-lang](./sign-lang-app.jpg)
 
 [Demo](https://signlanguage076-svg.github.io/sign-lang/)
 
