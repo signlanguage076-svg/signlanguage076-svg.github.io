@@ -7,3 +7,5 @@
 画像の認識には、Teachable Machine を使用した。
 
 ![sign-lang](./sign-lang/sign-lang-app.jpg)
+
+[Demo](https://signlanguage076-svg.github.io/sign-lang/)
